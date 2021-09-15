@@ -8,6 +8,8 @@ namespace OOPLections
 {
     class Palladin
     {
+        private static int currentID = 0;
+        public int id { get; }
         public static int MaxHealth { get; set; }
         public static int HealthForLevel { get; set; }
         private string _name;
@@ -28,15 +30,21 @@ namespace OOPLections
         }
         public int Health { get; set; }
         private int Level { get; set; } = 1;
+        public Weapon Weapon { get; set; }
         public Palladin(string name, int health)
         {
+            id = currentID++;
             Name = name;
             Health = checkMaxHeath(health);
+            Weapon = Weapon.sword;
+
         }
         public Palladin(string name)
         {
+            id = currentID++;
             Name = name;
             Health = 50;
+            Weapon = Weapon.dagger;
         }
         static Palladin()
         {
@@ -60,7 +68,7 @@ namespace OOPLections
         }
         public void Show()
         {
-            Console.WriteLine($"Palladin {Name} with health {Health} level {Level}");
+            Console.WriteLine($"{id} Palladin {Name} with health {Health} level {Level} with {Weapon}");
         }
     }
 }

@@ -5,8 +5,10 @@ namespace OOPLections
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
+           
             List<Palladin> listPalladins = new List<Palladin>();
             listPalladins.Add(new Palladin("123456Artos", 1000000000));
             listPalladins.Add(new Palladin("Uther"));
@@ -20,14 +22,31 @@ namespace OOPLections
                 listPalladins[1].LevelUP();
             }
             ShowPalladinCollection(listPalladins);
+            foreach (Palladin item in listPalladins)
+            {
+                item.Name += "!!";
+                item.Weapon = (Weapon)15;
+            }
+            ShowPalladinCollection(listPalladins);
+
+
             Console.ReadKey();
         }
         private static void ShowPalladinCollection(List<Palladin>  listPalladins)
         {
+            Console.WriteLine("--------------------------------------------------------------");
             foreach (Palladin item in listPalladins)
             {
                 item.Show();
             }
+            Console.WriteLine("--------------------------------------------------------------");
         }
     }
+    enum  Weapon : int
+    {
+        sword = 15,
+        bown,
+        dagger
+    }
+
 }
