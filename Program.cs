@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOPLections.Models;
+using System;
 using System.Collections.Generic;
 
 namespace OOPLections
@@ -7,27 +8,43 @@ namespace OOPLections
     {
         static void Main(string[] args)
         {
-            List<Palladin> listPalladins = new List<Palladin>();
-            listPalladins.Add(new Palladin("123456Artos", 1000000000));
-            listPalladins.Add(new Palladin("Uther"));
-            ShowPalladinCollection(listPalladins);
+            List<Character> listCharacter = new List<Character>();
+            listCharacter.Add(new Palladin("123456Artos", 1000000000));
+            listCharacter.Add(new Priest("Uther"));
+            listCharacter.Add(new Priest("Uther2"));
+            listCharacter.Add(new Priest("Uther3"));
+            ShowPalladinCollection(listCharacter);
             for (int i = 0; i < 5; i++)
             {
-                listPalladins[0].LevelUP();
+                listCharacter[0].LevelUP();
             }
             for (int i = 0; i < 20; i++)
             {
-                listPalladins[1].LevelUP();
+                listCharacter[1].LevelUP();
+              
             }
-            ShowPalladinCollection(listPalladins);
+            ShowPalladinCollection(listCharacter);
             Console.ReadKey();
         }
-        private static void ShowPalladinCollection(List<Palladin>  listPalladins)
+        private static void ShowPalladinCollection(List<Character> listCharacter)
         {
-            foreach (Palladin item in listPalladins)
+            foreach (var item in listCharacter)
             {
-                item.Show();
+                bool isPaladin = (item is Palladin);
+                item.Show(!isPaladin);
+                if (isPaladin)
+                {
+                    Console.WriteLine($" Power = {((Palladin)item).Power}");
+                }
+                
+
             }
         }
+    }
+    enum Characters
+    {
+        Palladin,
+        Warrior,
+        Priest
     }
 }
